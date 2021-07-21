@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>Welcome {{ username }}</h1>
+{% endblock %}
+
+{% block body %}
+    <h4 class="display-4">TODO TASKS</h4>
+    <p>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col"><input type="checkbox" name="all"/></th>
+            <th scope="col">Task</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+        </tr>
+        </thead>
+        {% for id, title, task, date in todos %}
+            <tr>
+                <td><input type="checkbox" name="name" +{{ str(id) }} /></td>
+                <td>{{ title }} </td>
+                <td>{{ date.date() }}</td>
+                <td>{{ date.time() }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    </p>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>Create Task</h1>
+{% endblock %}
+
+{% block body %}
+    <form class="form-horizontal" role="form" method="post">
+        <label for="title">Title:</label>
+        <input name="title" id="title" required>
+        <label for="task">Task:</label>
+        <textarea class="form-control" name="body" id="body" rows="5">{{ request.form['task'] }}</textarea>
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date">
+    </form>
+{% endblock %}

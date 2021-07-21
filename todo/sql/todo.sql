@@ -9,10 +9,10 @@ CREATE TABLE user (
 
 CREATE TABLE task (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
     task TEXT,
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    date DATE,
-    time TIME,
+    date DATETIME,
     author_id INTEGER NOT NULL,
     FOREIGN KEY (author_id) REFERENCES user (id)
 );
