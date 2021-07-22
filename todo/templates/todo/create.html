@@ -11,6 +11,7 @@
         <label for="task">Task:</label>
         <textarea class="form-control" name="body" id="body" rows="5">{{ request.form['task'] }}</textarea>
         <label for="date">Date:</label>
-        <input type="date" name="date" id="date">
+        <input type="date" name="date" id="date" required>
+        <input type="submit" value="Save">
     </form>
 {% endblock %}

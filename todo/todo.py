@@ -63,3 +63,45 @@ def create():
             return redirect(url_for('todo.index'))
 
     return render_template('todo/create.html')
+    
+
+@bp.route('/<int:id>/edit', methods=('GET', 'POST'))
+@login_required
+def edit(id):
+    todo = get_todo(id)
+
+    if request.method == 'POST':
+        title = request.form['title']
+        task = request.form['task']
+        date = request.form['date']
+
+        error = None
+
+        if not title:
+            error = 'Title is required.'
+        if not date:
+            error = 'Date is required.'
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                'UPDATE task SET title = ?, task = ?, date = ?'
+                ' WHERE id = ?',
+                (title, task, date, id)
+            )
+            db.commit()
+            return redirect(url_for('todo.index'))
+
+    return render_template('todo/edit.html', todo=todo)
+
+
+@bp.route('/<int:id>/delete', methods=('POST',))
+@login_required
+def delete(id):
+    get_todo(id)
+    db = get_db()
+    db.execute('DELETE FROM task WHERE id =?', (id,))
+    db.commit()
+    return redirect(url_for('todo.index'))
