@@ -18,15 +18,15 @@
         </thead>
         {% for id, title, task, date in todos %}
             <tr>
-                <td><input type="checkbox" name="name" +{{ str(id) }} /></td>
-                <td>{{ title }} </td>
-                <td>{{ date.date() }}</td>
-                <td>{{ date.time() }}</td>
+                <td><input type="checkbox" name=f"name{{ id }}"/></td>
+                <td><a href="/todo/{{ id }}/edit">{{ title }}</a></td>
+                <td>{{ date.split(" ")[0] }}</td>
+                <td>{{ date.split(" ")[1] }}</td>
             </tr>
         {% endfor %}
     </table>
     </p>
     <div>
-      <a type="button" class="btn btn-warning" href="/todo/create"><span class="glyphicon glyphicon-plus"></span></a>
+        <a type="button" class="btn btn-warning btn-circle" href="/todo/create"><h1>+</h1></a>
     </div>
 {% endblock %}

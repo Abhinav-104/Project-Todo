@@ -1,8 +1,11 @@
 from flask import Blueprint, flash, g, redirect, render_template, request, url_for
 from werkzeug.exceptions import abort
+from datetime import datetime
 
 from todo.auth import login_required
 from todo.db import get_db
+
+
 
 bp = Blueprint('todo', 'todo', url_prefix="/todo")
 
@@ -43,6 +46,8 @@ def create():
         task = request.form['task']
         date = request.form['date']
 
+        date = datetime.strptime(date, '%Y-%m-%dT%H:%M')
+
         error = None
 
         if not title:
@@ -63,7 +68,7 @@ def create():
             return redirect(url_for('todo.index'))
 
     return render_template('todo/create.html')
-    
+
 
 @bp.route('/<int:id>/edit', methods=('GET', 'POST'))
 @login_required
@@ -74,6 +79,8 @@ def edit(id):
         title = request.form['title']
         task = request.form['task']
         date = request.form['date']
+
+        date = datetime.strptime(date, '%Y-%m-%dT%H:%M')
 
         error = None
 
