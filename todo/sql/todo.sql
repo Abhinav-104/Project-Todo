@@ -13,6 +13,7 @@ CREATE TABLE task (
     task TEXT,
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     date DATETIME,
+    done      BOOLEAN   NOT NULL CHECK (done IN (0, 1)),
     author_id INTEGER NOT NULL,
     FOREIGN KEY (author_id) REFERENCES user (id)
 );

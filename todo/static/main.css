@@ -17,10 +17,10 @@
     padding: 30px;
 }
 
-input[type=checkbox]:checked + label {
-  text-decoration: line-through;
-}
-
-tr.selected {
-  text-decoration: line-through;
+#bg {
+    background-image: url("welcome.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover
 }

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-    <div>
+    <div id="bg">
         Welcome to Todo list manager <br>
         {% if g.user %}
             Go to <a class="action" href="{{ url_for('todo.index') }}">TODO LIST</a>
