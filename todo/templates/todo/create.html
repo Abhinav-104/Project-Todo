@@ -6,12 +6,19 @@
 
 {% block body %}
     <form class="form-horizontal" role="form" method="post">
-        <label for="title">Title:</label>
+        <div class="form-control">
+            <label for="title">Title:</label>
         <input name="title" id="title" required>
-        <label for="task">Task:</label>
-        <textarea class="form-control" name="task" id="task" rows="5">{{ request.form['task'] }}</textarea>
-        <label for="date">Date:</label>
+        </div>
+        <div class="form-control">
+            <label for="task">Task:</label>
+            <br>
+        <textarea name="task" id="task" rows="5"> {{ request.form['task'] }}</textarea>
+        </div>
+        <div class="form-control">
+            <label for="date">Date:</label>
         <input type="datetime-local" name="date" id="date" required>
+        </div>
         <input type="submit" value="Save">
     </form>
 {% endblock %}

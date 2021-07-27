@@ -10,18 +10,34 @@
     <table class="table table-striped">
         <thead class="thead-dark">
         <tr>
-            <th scope="col"><input type="checkbox" name="all"/></th>
-            <th scope="col">Task</th>
+            <th scope="col"><input type="checkbox" name="all"/>&nbsp;&nbsp;Task</th>
             <th scope="col">Date</th>
             <th scope="col">Time</th>
+            <th scope="col">&nbsp;&nbsp;</th>
         </tr>
         </thead>
         {% for id, title, task, date in todos %}
             <tr>
-                <td><input type="checkbox" name=f"name{{ id }}"/></td>
-                <td><a href="/todo/{{ id }}/edit">{{ title }}</a></td>
+                <td><input type="checkbox" id=f"{{ id }}"/>&nbsp;&nbsp;<label for=f"{{ id }}"> <a
+                        href="/todo/{{ id }}/edit">{{ title }}</a> </label></td>
                 <td>{{ date.split(" ")[0] }}</td>
                 <td>{{ date.split(" ")[1] }}</td>
+                <td>
+                    <form action="{{ url_for('todo.delete', id=id) }}" method="post">
+                        <input class="danger" type="submit" id="Delete" value="Delete"
+                               onclick="return confirm('Are you sure?');">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd"
+                                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                        </svg>
+                    </form>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"><p>{{ task }}</p>
+                </td>
             </tr>
         {% endfor %}
     </table>
