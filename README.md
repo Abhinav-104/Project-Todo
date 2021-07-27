@@ -10,5 +10,5 @@ Features:
 - Mark tasks as done wen you're done
 
 
-Please open in Google chrome for the date input to work
-
+Please open in Google chrome for the date input to work OR 
+input date in the format %Y-%m-%dT%H:%M .
