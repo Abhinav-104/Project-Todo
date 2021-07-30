@@ -13,31 +13,24 @@ $(function () {
     });
 });
 
-$(document).click('change', '.checkbox', function () {
-    let id;
-    if ($(this).attr('checked')) {
-        $(this).removeAttr('checked');
 
-        id = $(this).val();
+$('.checkbox').change(function() {
+   let id = $(this).attr('id');
 
-        $.ajax({
-            url: '/todo/update',
-            type: 'POST',
-            data: {id: id, done: 0}
-        });
-
-    } else {
-        $(this).attr('checked', 'checked');
-        id = $(this).val();
-
-        $.ajax({
+   if (this.checked) {
+     $(this).parent().next().css("text-decoration", "line-through");
+     $.ajax({
             url: '/todo/update',
             type: 'POST',
             data: {id: id, done: 1}
-        });
-    }
-    $(this).parent().toggleClass('completed');
-    localStorage.setItem('listItems', $('#list-items').html());
-});
+     });
+   } else {
+     $(this).parent().next().css("text-decoration", "none");
+     $.ajax({
+            url: '/todo/update',
+            type: 'POST',
+            data: {id: id, done: 0}
+     });
 
-
+   }
+ });

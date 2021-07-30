@@ -33,8 +33,9 @@ def index():
                        'FROM task t,user u '
                        'WHERE t.author_id = u.id').fetchall()
     username = g.user['username']
+    today = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     string = ""
-    return render_template('todo/index.html', todos=todos, username=username, string=string)
+    return render_template('todo/index.html', todos=todos, username=username, string=string, today=today)
 
 
 @bp.route('/create', methods=('GET', 'POST'))
@@ -125,6 +126,7 @@ def update():
                    ' WHERE id = ?',
                    (done, id))
         db.commit()
+    return
 
 
 @bp.route('/week')
@@ -145,7 +147,7 @@ def weekly():
             if int(todo[3][8:10]) in range(today,today + 7):
                 ref_todo.append(todo)
 
-    return render_template('todo/index.html', todos=ref_todo, username=username, string=string)
+    return render_template('todo/index.html', todos=ref_todo, username=username, string=string, today=now)
 
 
 

@@ -11,7 +11,8 @@
     <table class="table table-striped">
         <thead class="thead-dark">
         <tr>
-            <th scope="col"><input type="checkbox" name="all"/>&nbsp;&nbsp;Task</th>
+            <th scope="col"><input type="checkbox" name="all"/>&nbsp;&nbsp;</th>
+            <th scope="col">Task</th>
             <th scope="col">Date</th>
             <th scope="col">Time</th>
             <th scope="col">&nbsp;&nbsp;</th>
@@ -21,16 +22,19 @@
             {% for id, title, task, date, done in todos %}
                 <tr>
                     {% if done %}
-                        <td><input class="checkbox" type="checkbox" id=f"{{ id }}" checked>&nbsp;&nbsp;<label
-                                for=f"{{ id }}"> <a
-                                href="/todo/{{ id }}/edit">{{ title }}</a> </label></td>
+                        <td><input class="checkbox" type="checkbox" id={{ id }} checked>&nbsp;&nbsp;</td>
+                        <td style="text-decoration: line-through;"><a href="/todo/{{ id }}/edit">{{ title }}</a></td>
                     {% else %}
-                        <td><input class="checkbox" type="checkbox" id=f"{{ id }}">&nbsp;&nbsp;<label for=f"{{ id }}">
-                            <a
-                                    href="/todo/{{ id }}/edit">{{ title }}</a> </label></td>
+                        <td><input class="checkbox" type="checkbox" id={{ id }}>&nbsp;&nbsp;</td>
+                        <td><a href="/todo/{{ id }}/edit">{{ title }}</a></td>
                     {% endif %}
+                    {% if today > date %}
+                    <td style="color:red;">{{ date.split(" ")[0] }}</td>
+                    <td style="color:red;">{{ date.split(" ")[1] }}</td>
+                    {% else %}
                     <td>{{ date.split(" ")[0] }}</td>
                     <td>{{ date.split(" ")[1] }}</td>
+                    {% endif %}
                     <td>
                         <form action="{{ url_for('todo.delete', id=id) }}" method="post">
                             <input class="danger" type="submit" id="Delete" value="Delete"
