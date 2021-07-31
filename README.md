@@ -22,3 +22,7 @@ input date in the format %Y-%m-%dT%H:%M .
 1. `export FLASK_APP=todo` to set the application
 1. `flask initdb` to create the initial database
 1. `flask run` to start the app.
+
+# Website
+
+You can access the todo list manager at the website https://letsdoittodo.herokuapp.com/
